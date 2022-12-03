@@ -23,14 +23,10 @@ self.addEventListener('fetch', function(event) {
     console.log("Fetch", event);
     // … either respond with the cached object or go ahead and fetch the actual URL
     event.respondWith(
-        caches.match(event.request).then(function(response) {
-            console.log("Cache match for ", event.request.url, response)
-            if (response) {
-                // retrieve from cache
-                return response;
-            }
-            // fetch as normal
-            return fetch(event.request);
+        fetch(event.request)
+        .catch(error => {
+            console.log("Error to fetch, fallback to cache", error);
+            return caches.match(event.request);
         })
     );
 });
