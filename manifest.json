@@ -5,7 +5,7 @@
     "icons": [
         {
             "src": "launcher-icon.svg",
-            "sizes": "48x48",
+            "sizes": "any",
             "type": "image/svg"
         }
     ],
