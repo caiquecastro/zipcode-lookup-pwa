@@ -1,7 +1,7 @@
 {
-    "short_name": "TechEvents",
-    "name": "Next technology events",
-    "description": "List of next events in Brazil and around the world",
+    "short_name": "Zipcode Lookup",
+    "name": "Lookup for zipcodes in Brazil",
+    "description": "Database of zipcodes in Brazil",
     "icons": [
         {
             "src": "/launcher-icon.svg",
