@@ -7,18 +7,38 @@ const zipcodeStreet = document.querySelector("#zipcode-street");
 const zipcodeNeighborhood = document.querySelector("#zipcode-neighborhood");
 const zipcodeCity = document.querySelector("#zipcode-city");
 const zipcodeState = document.querySelector("#zipcode-state");
+const searchMessage = document.querySelector("#search-message");
+const searchResult = document.querySelector("#search-result");
+
+const fillAddress = (data) => {
+    zipcodeStreet.textContent = data.street;
+    zipcodeNeighborhood.textContent = data.neighborhood;
+    zipcodeCity.textContent = data.city;
+    zipcodeState.textContent = data.state;
+}
 
 zipcodeForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = new FormData(zipcodeForm);
 
     const zipcode = formData.get("zipcode");
-    const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${zipcode}`);
+    try {
+        searchResult.style.display = 'none';
+        searchMessage.textContent = "Loading...";
+        fillAddress({});
 
-    const addressData = await response.json();
+        const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${zipcode}`);
 
-    zipcodeStreet.textContent = addressData.street;
-    zipcodeNeighborhood.textContent = addressData.neighborhood;
-    zipcodeCity.textContent = addressData.city;
-    zipcodeState.textContent = addressData.state;
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            throw new Error(responseData.message);
+        }
+
+        fillAddress(responseData);
+        searchResult.style.display = 'block';
+        searchMessage.textContent = "";
+    } catch (error) {
+        searchMessage.textContent = error.message;
+    }
 });
