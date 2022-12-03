@@ -4,9 +4,14 @@
     "description": "List of next events in Brazil and around the world",
     "icons": [
         {
-            "src": "launcher-icon.svg",
+            "src": "/launcher-icon.svg",
             "sizes": "any",
-            "type": "image/svg"
+            "type": "image/svg+xml"
+        },
+        {
+          "src": "/launcher-icon.png",
+          "type": "image/png",
+          "sizes": "512x512"
         }
     ],
     "start_url": "./?utm_source=web_app_manifest",
