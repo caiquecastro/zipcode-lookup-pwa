@@ -22,7 +22,7 @@ self.addEventListener('install', function(e) {
                 './script.js',
             ]).then(function() {
                 console.log("Skip waiting");
-                self.skipWaiting();
+                //self.skipWaiting();
             });
         })
     );
