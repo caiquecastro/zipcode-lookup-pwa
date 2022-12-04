@@ -1,4 +1,4 @@
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/serviceworker.js");
 }
 
@@ -23,7 +23,7 @@ zipcodeForm.addEventListener("submit", async (event) => {
 
     const zipcode = formData.get("zipcode");
     try {
-        searchResult.style.display = 'none';
+        searchResult.style.display = "none";
         searchMessage.textContent = "Loading...";
         fillAddress({});
 
@@ -36,7 +36,7 @@ zipcodeForm.addEventListener("submit", async (event) => {
         }
 
         fillAddress(responseData);
-        searchResult.style.display = 'block';
+        searchResult.style.display = "block";
         searchMessage.textContent = "";
     } catch (error) {
         searchMessage.textContent = error.message;
