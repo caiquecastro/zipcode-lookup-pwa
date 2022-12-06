@@ -11,15 +11,16 @@ const shouldCacheRequest = (request) => {
 }
 
 // During the installation phase, you'll usually want to cache static assets.
-self.addEventListener('install', function(e) {
+self.addEventListener("install", function(e) {
     console.log("Install");
     // Once the service worker is installed, go ahead and fetch the resources to make this work offline.
     e.waitUntil(
-        caches.open(cacheName).then(function(cache) {
+        caches.open(cacheName).then((cache) => {
             return cache.addAll([
-                './',
-                './style.css',
-                './script.js',
+                "./",
+                "./manifest.json",
+                //'./style.css',
+                //'./script.js',
             ]).then(function() {
                 console.log("Skip waiting");
                 //self.skipWaiting();
