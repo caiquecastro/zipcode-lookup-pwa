@@ -8,10 +8,11 @@ const putInCache = async (request, response) => {
 
 const shouldCacheRequest = (request) => {
     const isApiRequest = request.url.includes("https://brasilapi.com.br");
+    const assetsRequest = request.url.includes("/assets/index");
     console.log('should cache', request);
-    console.log({ isApiRequest });
+    console.log({ isApiRequest, assetsRequest });
 
-    return isApiRequest;
+    return isApiRequest || assetsRequest;
 }
 
 // During the installation phase, you'll usually want to cache static assets.
@@ -23,8 +24,6 @@ self.addEventListener("install", function(e) {
             return cache.addAll([
                 "./",
                 "./manifest.json",
-                //'./style.css',
-                //'./script.js',
             ]).then(function() {
                 console.log("Skip waiting");
                 self.skipWaiting();
