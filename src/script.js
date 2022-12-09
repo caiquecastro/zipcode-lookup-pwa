@@ -28,8 +28,14 @@ zipcodeForm.addEventListener("submit", async (event) => {
     const formData = new FormData(zipcodeForm);
 
     const zipcode = formData.get("zipcode");
+    searchResult.style.display = "none";
+
+    if (!zipcode.length) {
+        searchMessage.textContent = "Fill zipcode input...";
+        return;
+    }
+
     try {
-        searchResult.style.display = "none";
         searchMessage.textContent = "Loading...";
         fillAddress({});
 
