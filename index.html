@@ -11,29 +11,31 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>Zipcode Lookup</h1>
-    <h2>Search for zipcodes in Brazil</h2>
+    <div id="app">
+        <h1>Zipcode Lookup</h1>
+        <h2>Search for zipcodes in Brazil</h2>
 
-    <form action="/search" id="zipcode-form">
-        <input type="text" name="zipcode" id="zipcode" />
-        <button>Search</button>
-    </form>
+        <form action="/search" id="zipcode-form">
+            <input type="text" name="zipcode" id="zipcode" maxlength="9" />
+            <button>Search</button>
+        </form>
 
-    <div id="search-message"></div>
+        <div id="search-message"></div>
 
-    <dl id="search-result">
-        <dt>Street</dt>
-        <dd id="zipcode-street"></dd>
+        <dl id="search-result">
+            <dt>Street</dt>
+            <dd id="zipcode-street"></dd>
 
-        <dt>Neighborhood</dt>
-        <dd id="zipcode-neighborhood"></dd>
+            <dt>Neighborhood</dt>
+            <dd id="zipcode-neighborhood"></dd>
 
-        <dt>City</dt>
-        <dd id="zipcode-city"></dd>
+            <dt>City</dt>
+            <dd id="zipcode-city"></dd>
 
-        <dt>State</dt>
-        <dd id="zipcode-state"></dd>
-    </dl>
+            <dt>State</dt>
+            <dd id="zipcode-state"></dd>
+        </dl>
+    </div>
     <script type="module" src="/script.js"></script>
 </body>
 </html>
