@@ -32,7 +32,11 @@ self.addEventListener("install", function(e) {
     );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener("activate", (event) => {
+    console.log("activate", event);
+});
+
+self.addEventListener("fetch", function(event) {
     console.log("Fetch", event);
     // … either respond with the cached object or go ahead and fetch the actual URL
     event.respondWith(
