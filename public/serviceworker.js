@@ -1,8 +1,8 @@
 // Use a cacheName for cache versioning
-const cacheName = 'v1:static';
+const CACHE_NAME = 'v1:static';
 
 const putInCache = async (request, response) => {
-    const cache = await caches.open(cacheName);
+    const cache = await caches.open(CACHE_NAME);
     await cache.put(request, response);
 };
 
@@ -18,7 +18,7 @@ self.addEventListener("install", function(e) {
     console.log("Install");
     // Once the service worker is installed, go ahead and fetch the resources to make this work offline.
     e.waitUntil(
-        caches.open(cacheName).then((cache) => {
+        caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
                 "./",
                 "./manifest.json",
