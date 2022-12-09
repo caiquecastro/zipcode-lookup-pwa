@@ -9,8 +9,6 @@ const putInCache = async (request, response) => {
 const shouldCacheRequest = (request) => {
     const isApiRequest = request.url.includes("https://brasilapi.com.br");
     const assetsRequest = request.url.includes("/assets/index");
-    console.log('should cache', request);
-    console.log({ isApiRequest, assetsRequest });
 
     return isApiRequest || assetsRequest;
 }
