@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="app" class="container mx-auto px-4">
-        <h1>Zipcode Lookup</h1>
+        <h1 class="text-4xl font-bold">Zipcode Lookup</h1>
         <h2>Search for zipcodes in Brazil</h2>
 
         <form action="/search" id="zipcode-form">
@@ -23,18 +23,24 @@
                 id="zipcode"
                 maxlength="9"
                 class="
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
+                    block w-full
+                    px-3 py-1.5
+                    text-base font-normal
+                    text-gray-700 bg-white bg-clip-padding
                     border border-solid border-gray-300
                 "
             />
-            <button>Search</button>
+            <button
+                class="
+                    inline-block
+                    px-6 py-2.5
+                    bg-blue-600 text-white
+                    font-medium text-xs leading-tight uppercase
+                    rounded
+                "
+            >
+                Search
+            </button>
         </form>
 
         <div id="search-message"></div>
