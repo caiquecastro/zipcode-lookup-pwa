@@ -8,7 +8,7 @@ if ("serviceWorker" in navigator) {
         });
 }
 
-const ZIPCODE_REGEX = /[0-9]{5}\-?[0-9]{3}/;
+const ZIPCODE_REGEX = /^[0-9]{5}\-?[0-9]{3}$/;
 
 const zipcodeForm = document.querySelector("#zipcode-form");
 const zipcodeInput = document.querySelector("#zipcode");
@@ -41,17 +41,29 @@ const fillAddress = (data) => {
     zipcodeState.textContent = data.state;
 }
 
+zipcodeInput.addEventListener("input", () => {
+    searchMessage.classList.remove("bg-red-600");
+    searchMessage.classList.remove("text-white");
+    searchMessage.classList.remove("bg-yellow-200");
+    searchMessage.classList.remove("text-black");
+    searchResult.classList.add("hidden");
+});
+
 zipcodeForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = new FormData(zipcodeForm);
 
     const zipcode = formData.get("zipcode");
-    searchResult.style.display = "none";
+    searchResult.classList.add("hidden");
 
     try {
         const validZipcode = validateZipcode(zipcode);
 
         searchMessage.textContent = "Loading...";
+        searchMessage.classList.remove("bg-red-600");
+        searchMessage.classList.remove("text-white");
+        searchMessage.classList.add("bg-yellow-200");
+        searchMessage.classList.add("text-black");
         fillAddress({});
 
         const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${validZipcode}`);
@@ -63,9 +75,13 @@ zipcodeForm.addEventListener("submit", async (event) => {
         }
 
         fillAddress(responseData);
-        searchResult.style.display = "block";
+        searchResult.classList.remove("hidden");
         searchMessage.textContent = "";
     } catch (error) {
         searchMessage.textContent = error.message;
+        searchMessage.classList.remove("bg-yellow-200");
+        searchMessage.classList.remove("text-black");
+        searchMessage.classList.add("bg-red-600");
+        searchMessage.classList.add("text-white");
     }
 });
