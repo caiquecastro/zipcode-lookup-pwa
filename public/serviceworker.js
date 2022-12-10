@@ -7,35 +7,35 @@ const putInCache = async (request, response) => {
 };
 
 const shouldCacheRequest = (request) => {
-    const isApiRequest = request.url.includes("https://brasilapi.com.br");
-    const assetsRequest = request.url.includes("/assets/index");
+    const isApiRequest = request.url.includes('https://brasilapi.com.br');
+    const assetsRequest = request.url.includes('/assets/index');
 
     return isApiRequest || assetsRequest;
 }
 
 // During the installation phase, you'll usually want to cache static assets.
-self.addEventListener("install", function(e) {
-    console.log("Install");
+self.addEventListener('install', function(e) {
+    console.log('Install');
     // Once the service worker is installed, go ahead and fetch the resources to make this work offline.
     e.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
-                "./",
-                "./manifest.json",
+                './',
+                './manifest.json',
             ]).then(function() {
-                console.log("Skip waiting");
+                console.log('Skip waiting');
                 self.skipWaiting();
             });
         })
     );
 });
 
-self.addEventListener("activate", (event) => {
-    console.log("activate", event);
+self.addEventListener('activate', (event) => {
+    console.log('activate', event);
 });
 
-self.addEventListener("fetch", function(event) {
-    console.log("Fetch", event);
+self.addEventListener('fetch', function(event) {
+    console.log('Fetch', event);
     // … either respond with the cached object or go ahead and fetch the actual URL
     event.respondWith(
         fetch(event.request)
@@ -47,7 +47,7 @@ self.addEventListener("fetch", function(event) {
             return response;
         })
         .catch(error => {
-            console.log("Error to fetch, fallback to cache", error);
+            console.log('Error to fetch, fallback to cache', error);
             return caches.match(event.request);
         })
     );
