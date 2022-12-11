@@ -20,7 +20,7 @@ self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
-                //'/',
+                '/',
                 '/index.html',
                 '/manifest.json',
             ]).then(function() {
@@ -33,6 +33,15 @@ self.addEventListener('install', function(e) {
 
 self.addEventListener('activate', (event) => {
     console.log('activate', event);
+    const cacheAllowlist = [CACHE_NAME];
+    event.waitUntil(
+      caches.forEach((cache, cacheName) => {
+        console.log({ cache, cacheName });
+        if (!cacheAllowlist.includes(cacheName)) {
+          return caches.delete(cacheName);
+        }
+      })
+    );
 });
 
 self.addEventListener('fetch', function(event) {
