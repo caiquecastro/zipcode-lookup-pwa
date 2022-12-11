@@ -35,11 +35,16 @@ self.addEventListener('activate', (event) => {
   console.log('activate', event);
   const cacheAllowlist = [CACHE_NAME];
   event.waitUntil(
-    caches.forEach((cache, cacheName) => {
-      console.log({ cache, cacheName });
-      if (!cacheAllowlist.includes(cacheName)) {
-        return caches.delete(cacheName);
-      }
+    caches.keys().then((keys) => Promise.all(
+      keys.forEach((key) => {
+        console.log({ key });
+        if (!cacheAllowlist.includes(key)) {
+          console.log(`Delete cache key: ${key}`);
+          return caches.delete(key);
+        }
+      })
+    )).then(() => {
+      console.log('Service worker is ready to handle fetches');
     })
   );
 });
