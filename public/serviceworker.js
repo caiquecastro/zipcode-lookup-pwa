@@ -36,7 +36,7 @@ self.addEventListener('activate', (event) => {
   const cacheAllowlist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((keys) => Promise.all(
-      keys.forEach((key) => {
+      keys.map((key) => {
         console.log({ key });
         if (!cacheAllowlist.includes(key)) {
           console.log(`Delete cache key: ${key}`);
