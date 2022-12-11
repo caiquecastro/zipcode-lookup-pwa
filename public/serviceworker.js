@@ -1,5 +1,5 @@
 // Use a cacheName for cache versioning
-const CACHE_NAME = 'v1:static';
+const CACHE_NAME = 'v2';
 
 const putInCache = async (request, response) => {
   const cache = await caches.open(CACHE_NAME);
