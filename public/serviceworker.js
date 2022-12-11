@@ -20,8 +20,9 @@ self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
-                './',
-                './manifest.json',
+                //'/',
+                '/index.html',
+                '/manifest.json',
             ]).then(function() {
                 console.log('Skip waiting');
                 self.skipWaiting();
