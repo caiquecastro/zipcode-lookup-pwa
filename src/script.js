@@ -46,6 +46,7 @@ zipcodeInput.addEventListener('input', () => {
     searchMessage.classList.remove('text-white');
     searchMessage.classList.remove('bg-yellow-200');
     searchMessage.classList.remove('text-black');
+    searchMessage.textContent = '';
     searchResult.classList.add('hidden');
 });
 
