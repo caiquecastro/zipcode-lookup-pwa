@@ -18,6 +18,19 @@ const zipcodeCity = document.querySelector('#zipcode-city');
 const zipcodeState = document.querySelector('#zipcode-state');
 const searchMessage = document.querySelector('#search-message');
 const searchResult = document.querySelector('#search-result');
+const statusTopbar = document.querySelector("#status-topbar");
+
+const changeNetworkStatusBar = (status) => {
+  if (status === "online") {
+    statusTopbar.textContent = "You are online";
+    statusTopbar.classList.remove("bg-red-700");
+    statusTopbar.classList.add("bg-green-700");
+  } else {
+    statusTopbar.textContent = "You are offline";
+    statusTopbar.classList.remove("bg-green-700");
+    statusTopbar.classList.add("bg-red-700");
+  }
+};
 
 const validateZipcode = (zipcode) => {
   const cleanZipcode = zipcode.trim();
@@ -85,4 +98,12 @@ zipcodeForm.addEventListener('submit', async (event) => {
     searchMessage.classList.add('bg-red-600');
     searchMessage.classList.add('text-white');
   }
+});
+
+window.addEventListener("offline", () => {
+  changeNetworkStatusBar("offline");
+});
+
+window.addEventListener("online", () => {
+  changeNetworkStatusBar("online");
 });
