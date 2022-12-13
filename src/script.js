@@ -100,6 +100,8 @@ zipcodeForm.addEventListener('submit', async (event) => {
   }
 });
 
+changeNetworkStatusBar(navigator.onLine ? "online" : "offline");
+
 window.addEventListener("offline", () => {
   changeNetworkStatusBar("offline");
 });
