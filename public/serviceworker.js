@@ -11,12 +11,12 @@ const shouldCacheRequest = (request) => {
   const assetsRequest = request.url.includes('/assets/index');
 
   return isApiRequest || assetsRequest;
-}
+};
 
 // During the installation phase, you'll usually want to cache static assets.
 self.addEventListener('install', function (e) {
   console.log('Install');
-  // Once the service worker is installed, go ahead and fetch the resources to make this work offline.
+  // Once the service worker is installed, fetch the resources to make this work offline.
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
@@ -42,6 +42,8 @@ self.addEventListener('activate', (event) => {
           console.log(`Delete cache key: ${key}`);
           return caches.delete(key);
         }
+
+        return Promise.resolve(true);
       })
     )).then(() => {
       console.log('Service worker is ready to handle fetches');

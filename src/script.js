@@ -8,7 +8,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const ZIPCODE_REGEX = /^[0-9]{5}\-?[0-9]{3}$/;
+const ZIPCODE_REGEX = /^[0-9]{5}-?[0-9]{3}$/;
 
 const zipcodeForm = document.querySelector('#zipcode-form');
 const zipcodeInput = document.querySelector('#zipcode');
@@ -52,7 +52,7 @@ const fillAddress = (data) => {
   zipcodeNeighborhood.textContent = data.neighborhood;
   zipcodeCity.textContent = data.city;
   zipcodeState.textContent = data.state;
-}
+};
 
 zipcodeInput.addEventListener('input', () => {
   searchMessage.classList.remove('bg-red-600');
