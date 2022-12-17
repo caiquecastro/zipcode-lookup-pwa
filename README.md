@@ -1,5 +1,7 @@
 # Zipcode Lookup
 
+[![GitHub Super-Linter](https://github.com/caiquecastro/zipcode-lookup-pwa/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 Aplicação para demonstrar a capacidade de Progressive Web Apps.
 
 ## Running locally
